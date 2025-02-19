@@ -6,6 +6,8 @@ type ThirdPartyComponentProps = {
 };
 
 export const ThirdPartyComponent = (props: ThirdPartyComponentProps) => {
+  console.log(props);
+
   return (
     <View style={props.style}>
       <View style={props.containerStyle}>
