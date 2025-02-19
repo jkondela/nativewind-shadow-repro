@@ -6,7 +6,7 @@ type ThirdPartyComponentProps = {
 };
 
 export const ThirdPartyComponent = (props: ThirdPartyComponentProps) => {
-  console.log(props);
+  console.log('style prop:', props.style);
 
   return (
     <View style={props.style}>
