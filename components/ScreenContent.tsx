@@ -1,25 +1,36 @@
+import { cssInterop } from 'nativewind';
 import { Text, View } from 'react-native';
 
-import { EditScreenInfo } from './EditScreenInfo';
+import { ThirdPartyComponent } from './ThirdPartyComponent';
 
-type ScreenContentProps = {
-  title: string;
-  path: string;
-  children?: React.ReactNode;
-};
+const StyledThirdPartyComponent = cssInterop(ThirdPartyComponent, {
+  className: {
+    target: 'style',
+  },
+  containerClassname: {
+    target: 'containerStyle',
+  },
+});
 
-export const ScreenContent = ({ title, path, children }: ScreenContentProps) => {
+export const ScreenContent = () => {
   return (
-    <View className={styles.container}>
-      <Text className={styles.title}>{title}</Text>
-      <View className={styles.separator} />
-      <EditScreenInfo path={path} />
-      {children}
+    <View className="flex-1 items-center justify-center bg-gray-100">
+      {/* With "shadow-lg" */}
+      <View className="mb-12">
+        <Text className="mb-4 text-2xl font-bold">With shadow-lg (blue background is working)</Text>
+        <StyledThirdPartyComponent
+          className="bg-blue-500 p-4"
+          containerClassname="border border-grey-200 bg-white shadow-lg shadow-grey-300"
+        />
+      </View>
+      {/* Without "shadow-lg" */}
+      <View className="mb-12">
+        <Text className="mb-4 text-2xl font-bold">Without shadow-lg (blue background missing)</Text>
+        <StyledThirdPartyComponent
+          className="bg-blue-500 p-4"
+          containerClassname="border border-grey-200 bg-white shadow-grey-300"
+        />
+      </View>
     </View>
   );
-};
-const styles = {
-  container: `items-center flex-1 justify-center`,
-  separator: `h-[1px] my-7 w-4/5 bg-gray-200`,
-  title: `text-xl font-bold`,
 };
